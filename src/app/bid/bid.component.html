@@ -1,0 +1,45 @@
+<h1 style="text-align: center;">Bids</h1>
+
+
+<mat-grid-list cols="3" style="width: 90%;">
+    
+    
+    <mat-grid-tile>
+        <div>
+    
+            <h2 style="text-align: center;">Maiores prêmios:</h2>
+        <ul class="bids">
+        <li *ngFor="let jack of getFilteredBids(1)" (click)="onSelect(jack)" [class.selected] = "jack === bid">      
+
+           
+           <div style="display: table;">
+
+            <span class="badge" style="display: table-cell; vertical-align: middle; width: 30%;">
+                <span style="display: block; text-align: center;">{{jack.jackpot.lottery.name | uppercase}}</span>
+                
+                <span>{{jack.jackpot.estimate/100 | currency:'BRL'}}</span>
+                
+            </span>
+   
+            <span class="desc">
+            <span style="display: block;width: 50%; text-align: center; font-size: large;">{{jack.jackpot.date | date:'dd/MM/yyyy'}}</span>
+            <span style="margin-bottom: 5px;">Concorra com {{jack.jackpot.description}}</span>
+                
+            </span>
+    
+        </div>           
+
+        </li>
+        </ul>
+        </div>
+    </mat-grid-tile>
+
+
+   
+
+
+  
+
+
+    
+</mat-grid-list>

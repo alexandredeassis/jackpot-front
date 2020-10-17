@@ -1,0 +1,23 @@
+<div *ngIf="jackpot">
+    <h2>{{jackpot.id}}</h2>
+    <div><span>date: </span><span>{{jackpot.date | date:"dd/MM/yyyy"}}</span></div>
+    <div><span>description: </span><span>{{jackpot.description | uppercase}}.</span></div>
+        <div>
+        <label>date:
+          <input [(ngModel)]="jackpot.date" placeholder="date"/>
+        </label>
+    </div>
+    
+    <div>
+        <label>description:
+          <input [(ngModel)]="jackpot.description" placeholder="description"/>
+        </label>
+    </div>
+
+
+    <div>
+        <label>lottery:
+          <input disabled=true [(ngModel)]="jackpot.lottery.name" placeholder="lottery"/>
+        </label>
+    </div>
+    </div>    
