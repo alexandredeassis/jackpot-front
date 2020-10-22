@@ -10,8 +10,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatSliderModule } from '@angular/material/slider';
 import {MatCardModule} from '@angular/material/card';
+import { MatCarouselModule } from '@ngmodule/material-carousel'
+
 import {MatGridListModule} from '@angular/material/grid-list';
 import { BidComponent } from './bid/bid.component';
+
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule, MatIconRegistry} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,10 @@ import { BidComponent } from './bid/bid.component';
     BrowserAnimationsModule,
     MatSliderModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCarouselModule.forRoot()    
   ],
   providers: [],
   bootstrap: [AppComponent]

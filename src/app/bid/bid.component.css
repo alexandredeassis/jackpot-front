@@ -3,48 +3,52 @@
     margin: 0 0 0 0;
     list-style-type: none;
     padding: 0;
-    width: 25em;
+    width: 100%;
+    
   }
   .bids li {
     cursor: pointer;
     position: relative;
     left: 0;
-    background-color: #EEE;
+    background-color:#F19F4D;
     margin: .5em;
     padding: .3em 0;
-    height: 2.6em;
-    width: 220em;
-    border-radius: 4px;
+    height: 3em;
+    color: white;   
+    border-radius: 4px;    
     
   }
   .bids li:hover {
-    color: #607D8B;
-    background-color: #DDD;
+    color: purple;
+    background-color: #F9CF00;
     left: .1em;
+    
   }
   .bids li.selected {
-    background-color: #CFD8DC;
-    color: white;
+    background-color: #F9CF00;
+    color: purple;
+    
   }
   .bids li.selected:hover {
-    background-color: #BBD8DC;
-    color: white;
+    background-color:#F9CF00;
+    color: purple;
+    
 
   }
   .bids .badge {
     display: inline-block;
-    font-size: medium;
+    font-size: small;
     color: white;
     padding: 0.8em 0.7em 0 0.7em;
     background-color:#405061;
-    line-height: 1em;
+    line-height: 1.9em;
     position: relative;
     left: -1px;
     top: -4px;
-    height: 2.0em;
-    margin-right: .8em;
-    border-radius: 4px 0 0 4px;
-    margin-top: 20;
+    height: 2.5em;
+    
+    
+    
   }
   
   .bids .badge:hover {   
@@ -52,15 +56,56 @@
     font-stretch: wider;
   }
 
-  .bids .desc {
-    display: inline-block;
-    font-size: medium;
-    color: black;
+  .bids .remaining {      
     vertical-align: middle;  
-    width: 100%;
-    margin-left: 10px;
-    margin-top: 5px;    
-  
-  }
+    width: 92%;
+    height: 90%;         
+    background:#4484CE;
+    margin-bottom: 5px;
+    margin-left: 1px;
+    margin-right: 1px;
+    padding-right: 3px;
+    padding-left: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+    font-size: x-large;
+    color: white;  
+    
+    
+    }
 
+
+  .bids .numbers {      
+    vertical-align: middle;  
+    width: 20%;    
+    margin-bottom: 5px;
+    display: table-cell;
+    text-align: center;        
+    font-size: large;
+    padding-right: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: large;
+    }
+
+
+  .bids .estimate {      
+    vertical-align: middle;  
+    width: 20%;    
+    margin-bottom: 5px;
+    display: table-cell;
+    text-align: center;        
+    font-size: large;
+    padding-right: 10px;
+    font-family: 'Staatliches', cursive;
+    font-size: x-large;
+    }
+
+    
+    
+    
+
+
+  
   

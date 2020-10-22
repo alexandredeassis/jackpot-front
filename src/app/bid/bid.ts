@@ -1,12 +1,15 @@
 import {Jackpot} from '../jackpot/jackpot';
 
-export interface Bid {
+export class Bid {
     id: number;
     limitDate: Date;
     total: number;
     missing: number;
     status: string;
+    label: string;
     jackpot: Jackpot;
+    remaining: string | undefined;
+    remainingSeconds: number | undefined;
     bidSequences: BidSequence[];
 
 }

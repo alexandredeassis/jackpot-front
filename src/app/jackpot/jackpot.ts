@@ -9,6 +9,8 @@ export interface Jackpot {
 export interface Lottery {
     id: number;
     name: string;
+    logo: string;
+    banner: string;
     minNumber: number;
     maxNumber: number;
 }
