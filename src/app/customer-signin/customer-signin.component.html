@@ -1,0 +1,43 @@
+<div style="position: relative; margin-top: 0px;">            
+    <h2 style="text-align: center;">Login</h2>
+    
+    
+      <mat-vertical-stepper [linear]="true" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Qual o seu email?</ng-template>
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Sobrenome, Nome" formControlName="firstCtrl" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Qual o sua senha?</ng-template>
+            <mat-form-field>
+              <mat-label>Senha</mat-label>
+              <input matInput formControlName="secondCtrl" placeholder="Ex. jose@gmail.com"
+                     required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Voltar</button>
+              <button mat-button matStepperNext>Avançar</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Concluido</ng-template>
+          <p>Obrigado por se registrar. Um e-mail foi enviado para você ativar a sua conta.</p>
+          <div>
+            <button mat-button matStepperPrevious>Voltar</button>
+            <button mat-button (click)="stepper.reset()">Reiniciar</button>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+      
+
+</div>

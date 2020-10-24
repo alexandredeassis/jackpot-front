@@ -49,7 +49,7 @@ export const BIDS : Bid[] = [
         limitDate: new Date("2020-10-22T14:43:00-03:00"), 
         total:300, 
         missing: 100,
-        status: 'RELEASED', 
+        status: 'CLOSED', 
         remaining: '',
         remainingSeconds: 0,
         label: '17 Números',
@@ -169,6 +169,94 @@ export const BIDS : Bid[] = [
             }
         ]
     
-    }             
+    },
+    { 
+        id: 5, 
+        limitDate: new Date("2020-10-25T15:00:30-03:00"), 
+        total:1000, 
+        missing: 450,
+        status: 'RELEASED', 
+        remaining: '',
+        remainingSeconds: 0,
+        label: '11 Números',
+        jackpot: { 
+            id: 4, date: new Date("2020-10-25T10:00:00-03:00"), 
+            estimate:1300000000, description: 'Normal',
+            lottery: {
+                id: 2, 
+                name:'Megasena',
+                logo:'megasena.jpg',
+                banner:'megasena_large.jpeg',
+                minNumber:6, 
+                maxNumber:15 
+            }
+        },
+        bidSequences: [
+            {
+                id: 4, 
+                bidSequenceNumbers: [
+                    {id: 21, value: 11},
+                    {id: 22, value: 22},
+                    {id: 23, value: 33},
+                    {id: 24, value: 34},
+                    {id: 25, value: 35},
+                    {id: 26, value: 45},
+                    {id: 27, value: 46},
+                    {id: 28, value: 47},
+                    {id: 29, value: 48},
+                    {id: 30, value: 49},
+                    {id: 31, value: 50},
+                    {id: 32, value: 54},
+                    {id: 33, value: 55}
+
+                ]
+            }
+        ]
+    
+    },
+    { 
+        id: 6, 
+        limitDate: new Date("2020-10-20T15:00:30-03:00"), 
+        total:1000, 
+        missing: 450,
+        status: 'MISSED', 
+        remaining: '',
+        remainingSeconds: 0,
+        label: '11 Números',
+        jackpot: { 
+            id: 4, date: new Date("2020-10-20T10:00:00-03:00"), 
+            estimate:1300000000, description: 'Normal',
+            lottery: {
+                id: 2, 
+                name:'Megasena',
+                logo:'megasena.jpg',
+                banner:'megasena_large.jpeg',
+                minNumber:6, 
+                maxNumber:15 
+            }
+        },
+        bidSequences: [
+            {
+                id: 4, 
+                bidSequenceNumbers: [
+                    {id: 21, value: 11},
+                    {id: 22, value: 22},
+                    {id: 23, value: 33},
+                    {id: 24, value: 34},
+                    {id: 25, value: 35},
+                    {id: 26, value: 45},
+                    {id: 27, value: 46},
+                    {id: 28, value: 47},
+                    {id: 29, value: 48},
+                    {id: 30, value: 49},
+                    {id: 31, value: 50},
+                    {id: 32, value: 54},
+                    {id: 33, value: 55}
+
+                ]
+            }
+        ]
+    
+    }              
     
 ]

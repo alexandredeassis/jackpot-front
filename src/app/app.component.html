@@ -1,8 +1,61 @@
-<nav style="text-align: center; font-size: large;">
-    <span><a routerLink="/bid" routerLinkActive="active">BID</a></span>    
-    <span style="width: 100px;"> - </span>
-    <span><a routerLink="/jackpot" routerLinkActive="active">JACKPOT</a></span>
+<nav style="text-align: left; font-size: x-large; background-color: white; position: sticky;">
+
+         
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item  [routerLink]="['/bid']">
+            <mat-icon>dialpad</mat-icon>
+            <span>Bid</span>
+            </button>        
+            <button mat-menu-item  [routerLink]="['/jackpot']">
+            <mat-icon>notifications_off</mat-icon>
+            <span>Jackpot</span>
+            </button>
+        </mat-menu>  
+
+        <span style="position: absolute;width: 100%; text-align: center;">
+            <span style="font-family:Georgia, 'Times New Roman', Times, serif">JACKPOT</span>
+            <span style="left: 1.5em; position: relative;">                
+                <button mat-icon-button class="example-iconn" aria-label="Example icon-button with share icon">
+                <mat-icon>share</mat-icon>
+                </button>       
+                <button  mat-icon-button class="example-icon favorite-icon" aria-label="unlogged user">
+                    <mat-icon>attach_money</mat-icon>
+                </button>
+                <button *ngIf="getCustomer()" color="primary" mat-icon-button mat-icon-button [matMenuTriggerFor]="logged">
+                    <mat-icon>person</mat-icon>
+                </button>
+                <button *ngIf="!getCustomer()" color="accent" mat-icon-button [matMenuTriggerFor]="unlogged">
+                    <mat-icon>person</mat-icon>
+                </button>
+            </span>
+
+            <mat-menu #logged="matMenu">
+                <button mat-menu-item  (click)="logout()">
+                <mat-icon>exit_to_app</mat-icon>
+                <span>Sair</span>
+                </button>                       
+            </mat-menu>  
+
+            <mat-menu #unlogged="matMenu">
+                <button mat-menu-item  [routerLink]="['/signin']">
+                <mat-icon>login</mat-icon>
+                <span>Entrar</span>
+                </button>                       
+                <button mat-menu-item  [routerLink]="['/customer']">
+                    <mat-icon>person_add</mat-icon>
+                    <span>Registrar</span>
+                    </button>                       
+            </mat-menu>  
+
+        </span>
+        
+    
+     
 </nav>
 
-<hr>
 <router-outlet></router-outlet>
+

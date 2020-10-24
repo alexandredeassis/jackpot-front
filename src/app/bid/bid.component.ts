@@ -2,9 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import {Bid} from './bid';
 import {BidService} from '../bid.service';
 
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import { JackpotComponent } from '../jackpot/jackpot.component';
+
+import {CustomerService} from '../customer.service';
+import {Customer} from '../customer/customer';
 
 @Component({
   selector: 'app-bid',
@@ -13,7 +19,7 @@ import {MatCardModule} from '@angular/material/card';
 })
 export class BidComponent implements OnInit {
 
-  constructor(private bidService: BidService) { }
+  constructor(private route: ActivatedRoute, private router: Router,private bidService: BidService, private customerService: CustomerService) { }
 
   bid:Bid;
   bids: Bid[];
@@ -30,6 +36,10 @@ export class BidComponent implements OnInit {
 
   getLogo(bid: Bid): string{
     return 'assets/'+bid.jackpot.lottery.logo;
+  }
+
+  getBanner(bid: Bid): string{
+    return 'assets/'+bid.jackpot.lottery.banner;
   }
 
   getEstimate(bid: Bid): string {
@@ -50,9 +60,9 @@ export class BidComponent implements OnInit {
 
     switch(option){
       case 1:      
-       return this.bids.sort((a,b) => a.missing>b.missing ? -1:  1).slice(0,5);
+       return this.bids.filter(this.filterDateMoreThanNow).sort((a,b) => a.missing>b.missing ? -1:  1).slice(0,5);
       case 2:
-        return this.bids.sort((a,b) => a.missing>b.missing ? 1: -1).slice(0,10);  
+        return this.bids.filter(this.filterDateLessThanNow).sort((a,b) => a.missing>b.missing ? 1: -1).slice(0,10);  
       case 3:
           return this.bids.sort((a,b) => a.limitDate>b.limitDate ? 1: -1).slice(0,3);  
       default:
@@ -63,13 +73,38 @@ export class BidComponent implements OnInit {
     
   }
 
-  filter(bid: Bid, index, array): boolean  {  
-     return bid.id > 3;
+  getStatus(bid: Bid){
+    switch(bid.status){
+        case 'RELEASED':
+          return 'Aberto';
+        case 'CLOSED':
+          return 'Fechado';
+        case 'MISSED':
+          return 'Furou';
+        case 'DRAFT':
+            return 'Rascunho';
+    }
   }
+
+  filterDateMoreThanNow(bid: Bid, index, array): boolean  {  
+     return bid.limitDate.getTime() > new Date().getTime();
+  }
+
+  filterDateLessThanNow(bid: Bid, index, array): boolean  {  
+    return bid.limitDate.getTime() < new Date().getTime();
+ }
+
+ filterReleased(bid: Bid, index, array): boolean  {  
+  return bid.status == 'RELEASED';
+}
+
+filterMissedOrClosed(bid: Bid, index, array): boolean  {  
+ return bid.status == 'CLOSED' || bid.status == 'MISSED';
+}
 
 
   
-  calculateRemaining(): void {
+calculateRemaining(): void {
     this.bids.forEach(function (value) {
       var number = value.limitDate.getTime() - new Date().getTime();
       var seconds = number/1000;
@@ -78,8 +113,7 @@ export class BidComponent implements OnInit {
       var days = Math.round(hours/24);
       var minutesResiduo = Math.floor(minutes%60);
       var secondsResiduo = Math.floor(seconds%60);
-
-      //var hoursMinutes = hours<10?'0'+hours:hours+ ':'+ (minutesResiduo<10?'0'+minutesResiduo:minutesResiduo);
+      
       var hoursString;
       var minutesString;
 
@@ -122,4 +156,20 @@ export class BidComponent implements OnInit {
   onSelect(bid: Bid){
     this.bid = bid;
   }
+
+
+  buy(bid: Bid){
+    var customer = this.customerService.getCustomerSync();
+    //this.bid = bid;
+    
+    console.log('Quero:' + customer);
+    if(customer === null){
+      this.router.navigate(['/customer']);
+    }else{
+      this.router.navigate(['/bid-details']);
+    }
+  }
+
+  
+  
 }

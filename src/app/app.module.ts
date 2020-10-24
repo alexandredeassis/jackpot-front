@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 
 import { NgModule } from '@angular/core';
+
+
 import { FormsModule } from '@angular/forms'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,13 +19,28 @@ import { BidComponent } from './bid/bid.component';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule, MatIconRegistry} from '@angular/material/icon';
+import { BidDetailsComponent } from './bid-details/bid-details.component';
+
+import {MatMenuModule} from '@angular/material/menu';
+import { CustomerComponent } from './customer/customer.component';
+
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { CustomerSigninComponent } from './customer-signin/customer-signin.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     JackpotComponent,
     JackpotDetailsComponent,
-    BidComponent
+    BidComponent,
+    BidDetailsComponent,
+    CustomerComponent,
+    CustomerSigninComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +52,11 @@ import {MatIconModule, MatIconRegistry} from '@angular/material/icon';
     MatGridListModule,
     MatButtonModule,
     MatIconModule,
+    MatMenuModule,
+    ReactiveFormsModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatCarouselModule.forRoot()    
   ],
   providers: [],
