@@ -34,6 +34,8 @@
             </span>
 
             <mat-menu #logged="matMenu">
+                <span  *ngIf="getCustomer()" style="display:table; text-align: center; width: 100%;">{{getCustomer().name}}</span>
+                <hr>
                 <button mat-menu-item  (click)="logout()">
                 <mat-icon>exit_to_app</mat-icon>
                 <span>Sair</span>

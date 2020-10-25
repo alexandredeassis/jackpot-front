@@ -11,7 +11,7 @@
               <input matInput placeholder="Sobrenome, Nome" formControlName="firstCtrl" required>
             </mat-form-field>
             <div>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-raised-button color="primary" matStepperNext>Avançar</button>
             </div>
           </form>
         </mat-step>
@@ -24,9 +24,16 @@
                      required>
             </mat-form-field>
             <div>
-              <button mat-button matStepperPrevious>Voltar</button>
-              <button mat-button matStepperNext>Avançar</button>
+              <button mat-raised-button color="accent" matStepperPrevious>Voltar</button>
+              <span style="margin-left: 1em;"></span>
+              <button mat-raised-button color="primary" matStepperNext>Avançar</button>
             </div>
+                        
+            <div *ngIf="secondFormGroup.get('secondCtrl').errors && secondFormGroup.get('secondCtrl').errors.alreadyEmail">              
+              Email ja cadastrado!
+            </div>
+
+
           </form>
         </mat-step>
         <mat-step>

@@ -1,4 +1,39 @@
 <div style="position: relative; margin-top: 0px;">            
+    <h2 style="text-align: center;">Entrar</h2>
+ 
+    <!--
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div style="display: table-row;">
+        <label> E-mail <input type="text" formControlName="email"></label>
+         <br/>
+         <label>Password<input type="text" formControlName="password"> </label>
+          <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+        </div>
+      </form>
+-->
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <div class="example-container" style="background: whitesmoke; text-align: center; padding-top: 1em; padding-bottom: 1em;">
+        <mat-form-field appearance="fill">
+          <mat-label>E-mail</mat-label>
+          <input matInput placeholder="pat@example.com"  formControlName="email"   required>          
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Senha</mat-label>
+            <input matInput placeholder="***"  formControlName="password"  required>          
+        </mat-form-field>
+        <br>
+        <button type="submit" mat-raised-button [disabled]="!profileForm.valid" color="primary">OK</button>
+       <br>
+       <mat-error *ngIf="failed">E-mail e senha não conferem</mat-error>
+      
+      </div>
+      </form>
+</div>
+<hr>
+
+<!--
+<div style="position: relative; margin-top: 0px;">            
     <h2 style="text-align: center;">Login</h2>
     
     
@@ -41,3 +76,4 @@
       
 
 </div>
+-->

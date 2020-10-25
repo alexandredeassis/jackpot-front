@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {EMPTY, Observable, of, throwError} from 'rxjs';
 import {Customer} from './customer/customer';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class CustomerService {
   constructor() { this.localStorage = window.localStorage;}
 
   
-  signIn(email: string, password: string): Observable<Customer>{
+  signIn(email: string, password: string): Observable<any>{
     console.log('signin: '+email+" - "+password);
     
     if(email==='deyse.joaquim@gmail.com' && password === '123'){
@@ -20,7 +20,9 @@ export class CustomerService {
       this.localStorage.setItem("customer",JSON.stringify(customer));
       return of(customer);
     }else{
-      of(null);
+      console.log('voltando porra nenhuma..');      
+      throwError(new Error('opss!'));
+      return of(null);
     }
   }
 
@@ -37,9 +39,9 @@ export class CustomerService {
 
   exists(email: string): Observable<boolean>{    
     if(email === 'deyse.joaquim@gmail.com'){
-      return of(true);
-    }else{
       return of(false);
+    }else{
+      return of(true);
     }
     
   }

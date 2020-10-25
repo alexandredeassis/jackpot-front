@@ -24,10 +24,21 @@ export class CustomerComponent implements OnInit {
       firstCtrl: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['',Validators.required,[already(this.customerService)]]
+      secondCtrl: ['',[Validators.required,Validators.email], [already(this.customerService)]]
     });
   }
 
+  getFormValidationErrors() {
+    Object.keys(this.secondFormGroup.controls).forEach(key => {
+  
+    const controlErrors: ValidationErrors = this.secondFormGroup.get(key).errors;
+    if (controlErrors != null) {
+          Object.keys(controlErrors).forEach(keyError => {
+            console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
+          });
+        }
+      });
+    }
 }
 
 export const already = 
@@ -37,7 +48,7 @@ export const already =
       return timer(time).pipe(
         switchMap(() => customerService.exists(input.value)),
         map(res => {
-          return res ? null : {loginExist: true}
+          return res ? null : {alreadyEmail: true}
         })
       );
     };
