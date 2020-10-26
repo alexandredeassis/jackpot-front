@@ -4,7 +4,7 @@ import {Jackpot, Lottery} from '../jackpot/jackpot';
 export const BIDS : Bid[] = [
     { 
         id: 1, 
-        limitDate: new Date("2020-10-23T14:11:30-03:00"), 
+        limitDate: new Date("2020-10-27T14:11:30-03:00"), 
         total:200, 
         missing: 200,
         status: 'RELEASED', 

@@ -1,79 +1,34 @@
-<div style="position: relative; margin-top: 0px;">            
-    <h2 style="text-align: center;">Entrar</h2>
- 
-    <!--
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-        <div style="display: table-row;">
-        <label> E-mail <input type="text" formControlName="email"></label>
-         <br/>
-         <label>Password<input type="text" formControlName="password"> </label>
-          <button type="submit" [disabled]="!profileForm.valid">Submit</button>
-        </div>
-      </form>
--->
+
+
+<div class="content">            
+  
+  <div>
       <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-      <div class="example-container" style="background: whitesmoke; text-align: center; padding-top: 1em; padding-bottom: 1em;">
-        <mat-form-field appearance="fill">
-          <mat-label>E-mail</mat-label>
-          <input matInput placeholder="pat@example.com"  formControlName="email"   required>          
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill">
-            <mat-label>Senha</mat-label>
-            <input matInput placeholder="***"  formControlName="password"  required>          
-        </mat-form-field>
-        <br>
-        <button type="submit" mat-raised-button [disabled]="!profileForm.valid" color="primary">OK</button>
-       <br>
-       <mat-error *ngIf="failed">E-mail e senha não conferem</mat-error>
-      
-      </div>
-      </form>
-</div>
-<hr>
-
-<!--
-<div style="position: relative; margin-top: 0px;">            
-    <h2 style="text-align: center;">Login</h2>
-    
-    
-      <mat-vertical-stepper [linear]="true" #stepper>
-        <mat-step [stepControl]="firstFormGroup">
-          <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Qual o seu email?</ng-template>
-            <mat-form-field>
-              <mat-label>Email</mat-label>
-              <input matInput placeholder="Sobrenome, Nome" formControlName="firstCtrl" required>
+        
+          <div class="login_container">
+            <h2 style="text-align: center; margin-top: 0.3em; color: #d9d9d9; font-size: x-large;" >Login</h2>
+            <hr>
+            <mat-form-field  appearance="outline">
+              <mat-label>E-mail</mat-label>
+              <input matInput placeholder="pat@example.com"  formControlName="email"   required >          
             </mat-form-field>
-            <div>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step [stepControl]="secondFormGroup">
-          <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Qual o sua senha?</ng-template>
-            <mat-form-field>
-              <mat-label>Senha</mat-label>
-              <input matInput formControlName="secondCtrl" placeholder="Ex. jose@gmail.com"
-                     required>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label>Senha</mat-label>
+                <input type="password" matInput placeholder="***"  formControlName="password"  required>          
             </mat-form-field>
-            <div>
-              <button mat-button matStepperPrevious>Voltar</button>
-              <button mat-button matStepperNext>Avançar</button>
+            <br>
+            <div style="width: 100%; display: flex; justify-content: center;">
+              <mat-error *ngIf="failed" style=" border-radius: 25px; width: 90%; font-size: large; color: #d9d9d9; background-color: rgba(255,0,0,1);">E-mail e senha não conferem</mat-error>
             </div>
-          </form>
-        </mat-step>
-        <mat-step>
-          <ng-template matStepLabel>Concluido</ng-template>
-          <p>Obrigado por se registrar. Um e-mail foi enviado para você ativar a sua conta.</p>
-          <div>
-            <button mat-button matStepperPrevious>Voltar</button>
-            <button mat-button (click)="stepper.reset()">Reiniciar</button>
+            <br>
+            <button type="submit" mat-raised-button [disabled]="!profileForm.valid" color="primary">OK</button>
+            <div style="display: flex;">
+              <span style="width: 48%;  text-align: left;"><a style="margin-left: 10px;" [routerLink]="['/customer']">Esqueceu a senha</a></span>
+              <span style="width: 48%; text-align: right;"><a [routerLink]="['/customer']">Registre-se</a></span>
+            </div>
           </div>
-        </mat-step>
-      </mat-vertical-stepper>
       
-
+      </form>
+    </div>
 </div>
--->

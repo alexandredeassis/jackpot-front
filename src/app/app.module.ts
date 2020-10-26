@@ -56,7 +56,7 @@ import { CustomerSigninComponent } from './customer-signin/customer-signin.compo
     ReactiveFormsModule,
     MatStepperModule,
     MatFormFieldModule,
-    MatInputModule,
+    MatInputModule,    
     MatCarouselModule.forRoot()    
   ],
   providers: [],

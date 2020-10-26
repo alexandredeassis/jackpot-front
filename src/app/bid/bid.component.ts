@@ -164,7 +164,7 @@ calculateRemaining(): void {
     
     console.log('Quero:' + customer);
     if(customer === null){
-      this.router.navigate(['/customer']);
+      this.router.navigate(['/signin']);
     }else{
       this.router.navigate(['/bid-details']);
     }

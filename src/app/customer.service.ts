@@ -9,6 +9,14 @@ export class CustomerService {
 
   localStorage: Storage;
 
+  mock: Customer={
+    'id': 1,
+    'name': 'deyse',
+    'email':'deyse.joaquim@gmail.com',
+    'token': '',
+    'create': new Date(),     
+    'activate': new Date()
+  }
   constructor() { this.localStorage = window.localStorage;}
 
   
@@ -37,11 +45,16 @@ export class CustomerService {
     return JSON.parse(this.localStorage.getItem("customer"));
   }
 
-  exists(email: string): Observable<boolean>{    
-    if(email === 'deyse.joaquim@gmail.com'){
-      return of(false);
+  exists(email: string): Observable<number>{    
+    
+    if(this.mock.email === email){
+      if(this.mock.activate === null)
+        return of(1);
+      else
+        return of(2);
+
     }else{
-      return of(true);
+      return of(0);
     }
     
   }

@@ -1,12 +1,17 @@
-<div style="position: relative; margin-top: 0px;">            
-    <h2 style="text-align: center;">Registrar</h2>
+<div class="content">               
     
-    
-      <mat-vertical-stepper [linear]="true" #stepper>
-        <mat-step [stepControl]="firstFormGroup">
+  <h2 style="margin-top: 5px; text-align: center; color: #d9d9d9; font-size: x-large;">Registrar</h2>
+  <hr>
+
+    <div  style="background-color:rgba(255, 160, 0, 0.4); height: 100%;">
+      <mat-vertical-stepper [linear]="true" #stepper  style="background-color:rgba(0, 0, 0, 0);">
+         
+        
+        <mat-step [stepControl]="firstFormGroup" >         
+
           <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Qual o seu nome?</ng-template>
-            <mat-form-field>
+            <ng-template matStepLabel color="primary"><span style="color: whitesmoke; font-size: large;">Qual o seu nome?</span></ng-template>
+            <mat-form-field appearance="outline">
               <mat-label>Nome</mat-label>
               <input matInput placeholder="Sobrenome, Nome" formControlName="firstCtrl" required>
             </mat-form-field>
@@ -17,8 +22,8 @@
         </mat-step>
         <mat-step [stepControl]="secondFormGroup">
           <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Qual o seu e-mail?</ng-template>
-            <mat-form-field>
+            <ng-template matStepLabel><span style="color: whitesmoke; font-size: large;">Qual o seu email?</span></ng-template>
+            <mat-form-field appearance="outline">
               <mat-label>E-mail</mat-label>
               <input matInput formControlName="secondCtrl" placeholder="Ex. jose@gmail.com"
                      required>
@@ -29,22 +34,35 @@
               <button mat-raised-button color="primary" matStepperNext>Avançar</button>
             </div>
                         
-            <div *ngIf="secondFormGroup.get('secondCtrl').errors && secondFormGroup.get('secondCtrl').errors.alreadyEmail">              
-              Email ja cadastrado!
+
+            <div style="margin-top: 10px;; border-radius: 25px; padding: 10px; width: 95%; font-size: large; color: white; background-color: rgba(230,0,0,0.8);" 
+            *ngIf="secondFormGroup.get('secondCtrl').errors && secondFormGroup.get('secondCtrl').errors.alreadyEmail">              
+             <p>Esse e-mail ja se encontra em nossos registros!</p> <p>Caso tenha esquecido a senha, podemos lhe enviar um email de recuperação.</p>
+             <span style="width: 100%;display: flex; justify-content: center;">
+              <a style="color:white;" [routerLink]="['/resent']">Reenviar e-mail</a>
+            </span>
+            </div>
+
+            <div style="margin-top: 10px;; border-radius: 25px; padding: 10px; width: 95%; font-size: large; color: white; background-color: rgba(230,0,0,0.8);" 
+            *ngIf="secondFormGroup.get('secondCtrl').errors && secondFormGroup.get('secondCtrl').errors.inactivatedEmail">              
+             <p>Esse e-mail ja se encontra em nossos registros, mas não esta ativado!</p> <p>Por favor, acesse sua conta de e-mail e siga as intruções de ativação.</p>
+             <span style="width: 100%;display: flex; justify-content: center;">
+              <a style="color:white;" [routerLink]="['/resent']">Reenviar e-mail</a>
+            </span>
             </div>
 
 
           </form>
         </mat-step>
         <mat-step>
-          <ng-template matStepLabel>Concluido</ng-template>
-          <p>Obrigado por se registrar. Um e-mail foi enviado para você ativar a sua conta.</p>
-          <div>
-            <button mat-button matStepperPrevious>Voltar</button>
-            <button mat-button (click)="stepper.reset()">Reiniciar</button>
+          
+          <ng-template matStepLabel><span style="color: whitesmoke; font-size: large;">Concluído</span></ng-template>
+          <div style="border-radius: 25px; padding: 10px; width: 95%; font-size: large; color: white; background-color: rgba(0,0,230,0.8);">
+            <p>Obrigado por se registrar.<p>
+            <p>Um e-mail foi enviado para você ativar a sua conta.</p>         
           </div>
         </mat-step>
       </mat-vertical-stepper>
       
-
+    </div>
 </div>

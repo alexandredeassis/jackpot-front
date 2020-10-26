@@ -48,7 +48,7 @@ export const already =
       return timer(time).pipe(
         switchMap(() => customerService.exists(input.value)),
         map(res => {
-          return res ? null : {alreadyEmail: true}
+          return res==0 ? null :  res==1?{inactivatedEmail: true}:{alreadyEmail: true}
         })
       );
     };
