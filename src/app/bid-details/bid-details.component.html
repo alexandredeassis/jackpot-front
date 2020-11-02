@@ -1,1 +1,87 @@
-<p>Pagina de compra!</p>
+
+<div class="content" *ngIf="bid">
+
+    <div style="width: 100%; display: flex; justify-content: center; margin-top: 3em;">
+    <mat-card class="example-card" style="width: 90%; height: 80%; background-color: rgba(0, 0, 0, 0.3); color:white; border-radius: 5%;">
+        <mat-card-header style=" display: flex; justify-content: center; align-items: center;">         
+          
+          <mat-card-title style="width: 100%; font-size: xx-large; font-family: 'Staatliches'">{{getEstimate(bid)}}</mat-card-title>
+         
+
+        </mat-card-header>
+        <img mat-card-image src="assets/{{bid.jackpot.lottery.banner}}"  style="border-radius: 50%;">
+        <mat-card-content style="text-align: center;" *ngIf="!bidded">
+          <p style="color: white;width: 100%; font-size: xx-large; font-family: 'Staatliches';  display: flex; justify-content: center;">{{bid.label}}</p>
+          
+          <div style="width: 100%; display: flex; justify-content: center; margin-top: 2em;">
+          <div style="display: table; width: 100%; background-color:rgba(0, 0, 0, 0); border-radius: 25px;">
+            <div style="display: table-row;width: 100%;">
+                <div style="display: table-cell;">
+                    <div style="text-align: center; width: 100%; font-size: large; font-family: 'Staatliches';">Saldo</div>
+                    <div style="background-color: blue; border-radius: 50%; height: 3em; width: 100%; display: flex; align-items: center; justify-content: center; font-size: large; margin-top: 0.1em;">
+                    {{getSaldo()/100 | currency: 'BRL'}}
+                    </div>
+                </div>
+                <div style="display: table-cell; width: 40%;">
+                    <div style="text-align: center; width: 100%; font-size: large; font-family: 'Staatliches';">Projeção</div>
+                    <div style="background-color: blue; border-radius: 50%; height: 3em; width: 100%; display: flex; align-items: center; justify-content: center; font-size: medium; margin-top: 0.1em;">
+                    {{getProjecao()/100 | currency: 'BRL'}}
+                    </div>
+                </div>
+                <div style="display: table-cell; width: 30%;">
+                    <div style="text-align: center; width: 100%; font-size: large; font-family: 'Staatliches'">Fatia</div>
+                    <div style="background-color: blue; border-radius: 50%; height: 3em; width: 100%; display: flex; align-items: center; justify-content: center; font-size: large; margin-top: 0.1em;">
+                    {{getPercent()}}%
+                    </div>
+                </div>
+            
+
+            </div>
+            
+         </div>
+         
+        </div> 
+        <div *ngIf="taked" style="font-size: large; background-color: red; margin-top: 1em;">
+            Ops! Não foi possivel comprar a quantidade desejada. Tente novamente.
+        </div>
+        </mat-card-content>
+        <mat-card-actions *ngIf="!bidded">
+            
+             <div style="background: rgba(255, 140, 0, 0.8); text-align: center; border-radius: 25px;">
+                <mat-slider
+                class="example-margin"  
+                [max]=getMissing()
+                [min]=0
+                [step]=100        
+                [(ngModel)]="slider"
+                [vertical]="vertical" color="primary">
+            </mat-slider>
+             </div>
+             <div style="width: 100%; display: flex; justify-content: center; margin-top: 1em;">
+             <button mat-raised-button style="background-color: blue; color: white;" (click)="take(bid)">Ok</button>   
+            </div>
+            <br>
+
+        </mat-card-actions>
+
+        <mat-card-actions *ngIf="bidded">
+            
+           <p>Você já esta participando dessa aposta!!</p>
+            <div style="width: 100%; display: flex; justify-content: center; margin-top: 1em;">
+            <button mat-raised-button style="background-color: blue; color: white;"  [routerLink]="['/bid']">Ok</button>   
+           </div>
+           <br>
+
+       </mat-card-actions>
+      </mat-card>
+    </div>
+
+   
+    
+
+
+
+   
+    
+   
+</div>

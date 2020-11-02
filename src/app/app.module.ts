@@ -29,6 +29,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { CustomerSigninComponent } from './customer-signin/customer-signin.component';
+import { WalletComponent } from './wallet/wallet.component';
 
 
 
@@ -40,7 +41,8 @@ import { CustomerSigninComponent } from './customer-signin/customer-signin.compo
     BidComponent,
     BidDetailsComponent,
     CustomerComponent,
-    CustomerSigninComponent
+    CustomerSigninComponent,
+    WalletComponent
   ],
   imports: [
     BrowserModule,

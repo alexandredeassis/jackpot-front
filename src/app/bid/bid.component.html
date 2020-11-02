@@ -1,3 +1,4 @@
+<div class="content">
 <mat-carousel 
     timings="250ms ease-in" [autoplay]="true" 
     interval="5000" color="black" maxWidth="auto" 
@@ -32,15 +33,10 @@
 
 </mat-carousel>
 
-<hr>
-
-
-
-
-
-<div style="position: relative; margin-top: 0px;">
+<div style="position: relative; margin-top: 0px; background-color: rgba(100,80,0,0.3);">
             
-    <h2 style="text-align: center;">Destaques</h2>
+    
+    <!--<h2 style="text-align: center; font-size: x-large; color:white; margin-top: 0px;">Destaques</h2>-->
     <ul class="bids">
     <li *ngFor="let jack of getFilteredBids(1)" (click)="onSelect(jack)" [class.selected] = "jack === bid">      
 
@@ -58,14 +54,22 @@
                     
                 </span>
                 <span style="width: 30%; display: table-cell;">                    
-                    <div class="remaining" *ngIf="jack!=bid">
-                        {{jack.remaining}}:{{jack.remainingSeconds<10?'0'+jack.remainingSeconds.toString():jack.remainingSeconds}}
+                    
+                    <div class="remaining" *ngIf="jack!=bid && !wasBidded(jack)">
+                        <span>{{jack.remaining}}:{{jack.remainingSeconds<10?'0'+jack.remainingSeconds.toString():jack.remainingSeconds}}</span>                  
                         
-                    </div>   
+                    </div>
+
+                    <div  *ngIf="jack!=bid && wasBidded(jack)" style="display: flex; justify-content: center; align-items: center;  height: 100%;">
+                        <button  mat-raised-button color="primary" (click)="buy(jack)">JA TENHO</button>                                      
+                    </div>
+
                     <div *ngIf="jack===bid" style="display: flex; justify-content: center; align-items: center;  height: 100%;">
-                        <button mat-raised-button color="primary" (click)="buy(jack)">QUERO</button>              
+                        <button *ngIf="!wasBidded(bid)" mat-raised-button color="primary" (click)="buy(jack)">QUERO</button>              
+                        <button *ngIf="wasBidded(bid)" mat-raised-button color="primary" (click)="buy(jack)">JA TENHO</button>              
                     </div>   
 
+                    
                 </span>
             
             </div>
@@ -77,11 +81,11 @@
     </ul>
 </div>
 
-<hr>
-
-<div style="position: relative; margin-top: 0px;">
+<br>
+ 
+<div style="position: relative; margin-top: 0px; background-color: rgba(255,160,0,0.3);">
             
-    <h2 style="text-align: center;">Passados</h2>
+    <h2 style="text-align: center; font-size: x-large; color:white;">Histórico</h2>
     <ul class="bids">
     <li *ngFor="let jack of getFilteredBids(2)" (click)="onSelect(jack)" [class.selected] = "jack === bid">      
 
@@ -116,4 +120,6 @@
 
     </li>
     </ul>
+</div>
+
 </div>

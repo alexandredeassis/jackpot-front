@@ -1,6 +1,6 @@
 /* HeroesComponent's private CSS styles */
 .bids {
-    margin: 0 0 0 0;
+    margin: 10 0 0 0;
     list-style-type: none;
     padding: 0;
     width: 100%;
@@ -10,7 +10,7 @@
     cursor: pointer;
     position: relative;
     left: 0;
-    background-color:#F19F4D;
+    background-color: rgba(241,159,77,0.6);
     margin: .5em;
     padding: .3em 0;
     height: 3em;
@@ -19,18 +19,18 @@
     
   }
   .bids li:hover {
-    color: purple;
-    background-color: #F9CF00;
+    color: white;
+    background-color: rgba(255,100,100,1);
     left: .1em;
     
   }
   .bids li.selected {
-    background-color: #F9CF00;
-    color: purple;
+    background-color: rgba(241,159,77,1);
+    color: white;
     
   }
   .bids li.selected:hover {
-    background-color:#F9CF00;
+    background-color: rgba(255,200,0,1);
     color: purple;
     
 
@@ -47,8 +47,7 @@
     top: -4px;
     height: 2.5em;
     
-    
-    
+        
   }
   
   .bids .badge:hover {   
@@ -103,7 +102,36 @@
     }
 
     
+    .content {
+      /* this is needed or the background will be offset by a few pixels at the top */
+      overflow: auto;
+      position: relative;
+      height: 100%;    
+      
+      
+    }
     
+    .content:before {
+      content: "";
+      position: fixed;
+      left: 0;
+      right: 0;
+      z-index: -1;
+    
+      display: block;
+      background-image: url('/assets/loterias.jpg'); 
+      background-size:cover;
+      width: 100%;
+      height: 100%;
+    
+      -webkit-filter: blur(2px);
+      -moz-filter: blur(2px);
+      -o-filter: blur(2px);
+      -ms-filter: blur(2px);
+      filter: blur(2px);
+    }
+  
+      
     
 
 

@@ -30,7 +30,27 @@ export class BidComponent implements OnInit {
   setBids(bids: Bid[]): void{
     this.bids=bids;
     this.calculateRemaining();
-    
+    this.bidService.report();    
+  }
+  getBid(): Bid{
+    return this.bid;
+  }
+
+  wasBidded(bid: Bid): boolean{
+    var wallet= this.customerService.wallet;
+
+    if(bid !=null && wallet!=null && Array.isArray(wallet.outcomming) && wallet.outcomming.length){
+      
+      var id = bid.id;
+      var aux = wallet.outcomming.find(e=> e.bid.id === id);
+     
+      if(aux != null ){
+        
+        return true;
+      }
+    }
+   
+    return false;
     
   }
 
@@ -151,10 +171,12 @@ calculateRemaining(): void {
 
   ngOnInit(): void {
     this.getBids();
+    this.bid=null;
   }
 
   onSelect(bid: Bid){
     this.bid = bid;
+    console.log("BID: "+bid.id);
   }
 
 
@@ -162,11 +184,14 @@ calculateRemaining(): void {
     var customer = this.customerService.getCustomerSync();
     //this.bid = bid;
     
-    console.log('Quero:' + customer);
+    console.log('Quero:' + customer.email+" bidId"+bid.id);
+
     if(customer === null){
+      console.log("customer is null");
       this.router.navigate(['/signin']);
     }else{
-      this.router.navigate(['/bid-details']);
+      console.log("customer is not null");
+      this.router.navigate(['/bid-details/'+bid.id]);
     }
   }
 

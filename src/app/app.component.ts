@@ -23,5 +23,9 @@ export class AppComponent {
   logout(){
     this.customerService.signOut();
 }
+clean(){
+  this.customerService.clean();
+  console.log('customer cleaned')
+}
 
 }

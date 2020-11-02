@@ -10,7 +10,7 @@ import { CustomerSigninComponent } from './customer-signin/customer-signin.compo
 const routes: Routes = [
   { path: 'jackpot', component: JackpotComponent},
   { path: 'bid', component: BidComponent},
-  { path: 'bid-details', component: BidDetailsComponent},
+  { path: 'bid-details/:id', component: BidDetailsComponent},
   { path: 'customer', component: CustomerComponent},
   { path: 'signin', component: CustomerSigninComponent},
   { path: '', redirectTo: '/bid', pathMatch: 'full' },
