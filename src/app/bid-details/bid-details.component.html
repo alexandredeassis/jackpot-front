@@ -5,11 +5,11 @@
     <mat-card class="example-card" style="width: 90%; height: 80%; background-color: rgba(0, 0, 0, 0.3); color:white; border-radius: 5%;">
         <mat-card-header style=" display: flex; justify-content: center; align-items: center;">         
           
-          <mat-card-title style="width: 100%; font-size: xx-large; font-family: 'Staatliches'">{{getEstimate(bid)}}</mat-card-title>
+          <mat-card-title *ngIf="!bidded" style="width: 100%; font-size: xx-large; font-family: 'Staatliches'">{{getEstimate(bid)}}</mat-card-title>
          
 
         </mat-card-header>
-        <img mat-card-image src="assets/{{bid.jackpot.lottery.banner}}"  style="border-radius: 50%;">
+        <img *ngIf="!bidded" mat-card-image src="assets/{{bid.jackpot.lottery.banner}}"  style="border-radius: 50%;">
         <mat-card-content style="text-align: center;" *ngIf="!bidded">
           <p style="color: white;width: 100%; font-size: xx-large; font-family: 'Staatliches';  display: flex; justify-content: center;">{{bid.label}}</p>
           
@@ -64,9 +64,69 @@
 
         </mat-card-actions>
 
-        <mat-card-actions *ngIf="bidded">
-            
-           <p>Você já esta participando dessa aposta!!</p>
+        <mat-card-content *ngIf="bidded">
+
+            <div *ngIf="bidded.status == 'RELEASED'">
+                <h1 style="color: white; text-align: center;">Parabéns</h1>                 
+                <p>Você esta concorrendo com {{bidded.label}} para um prêmio da {{bidded.jackpot.lottery.name | uppercase}} estimado em {{getEstimate(bidded)}}!!</p>
+                <p>O sorteio esta previsto para o dia {{bidded.jackpot.date | date: 'dd/MM'}} e se ganharmos, você receberá {{getMyPercent(outcomming)}}% do valor do prêmio de nossa aposta. Lembre-se que os prêmios da loteria são divididos quando ha mais de um ganhador.. :)</p>                
+                <p>A notícia triste é que, ainda falta um pouco de grana para fecharmos esse bolão.. :(</p>                       
+                <p>Mas fique tranquilo! Estaremos esperando por novos participantes até as {{bidded.limitDate | date: 'HH'}} horas do dia {{bidded.limitDate | date: 'dd/MM'}} e se conseguirmos juntar mais {{bidded.missing/100 | currency : 'BRL'}} estaremos no jogo. :)</p>
+                <p>Ahh, e não se preocupe.  Em caso de não conseguirmos fechar a tempo, o valor que você investiu para esta aposta retornará para sua conta.</p>
+                <p>Então, BOA SORTE!!!  :)</p>
+            </div>
+
+            <div *ngIf="bidded.status == 'CLOSED'">
+                <h1 style="color: white; text-align: center;">Ótimo</h1>                 
+                <p>Você esta concorrendo com {{bidded.label}} para um prêmio da {{bidded.jackpot.lottery.name | uppercase}} estimado em {{getEstimate(bidded)}}!!</p>
+                <p>O sorteio esta previsto para o dia {{bidded.jackpot.date | date: 'dd/MM'}} e se ganharmos, você receberá {{getMyPercent(outcomming)}}% do valor do prêmio de nossa aposta. Lembre-se que os prêmios da loteria são divididos quando ha mais de um ganhador.. :)</p>                                      
+                <p>E temos mais uma ótima notícia.. O grupo ja esta fechado e logo logo confimaremos a nossa aposta em uma casa lotérica. Fique de olho!! :)</p>
+                <p>Ahh, e não se preocupe.  Em caso de não conseguirmos fechar a tempo, o valor que você investiu para esta aposta retornará para sua conta.</p>
+                <p>Então, BOA SORTE!!!  :)</p>
+            </div>
+
+            <div *ngIf="bidded.status == 'BET'">
+                <h1 style="color: white; text-align: center;">Excelente</h1>                 
+                <p>Você esta concorrendo com {{bidded.label}} para um prêmio da {{bidded.jackpot.lottery.name | uppercase}} estimado em {{getEstimate(bidded)}}!!</p>
+                <p>O sorteio esta previsto para o dia {{bidded.jackpot.date | date: 'dd/MM'}} e se ganharmos, você receberá {{getMyPercent(outcomming)}}% do valor do prêmio de nossa aposta. Lembre-se que os prêmios da loteria são divididos quando ha mais de um ganhador.. :)</p>                                      
+                <p>E temos uma excelente notícia.. Nossa aposta foi confirmada junto a casa lotéria.. Agora é só ficar na torcida..</p>                
+                <p>Então, BOA SORTE!!!  :)</p>
+            </div>
+
+            <div *ngIf="bidded.status == 'MISSED'">
+                <h1 style="color: white; text-align: center;">Bolão furou</h1>                                 
+                <p>Não conseguimos fechar o grupo dessa vez.. :(</p>
+                <p>Mas tudo bem.. O valor que você investiu foi retornado para sua conta do site e ficou disponível para usar em outros bolões.. :)</p>
+                <p>Estamos certos que na próxima vez  conseguiremos juntar uma galera mais motivada.. rsrs </p>
+            </div>
+
+            <div *ngIf="bidded.status == 'DONE'">
+                <h1 style="color: white; text-align: center;">Resultado</h1>                                 
+                <p>Segue o resultado</p>
+            </div>
+
+            <hr/>
+            <div *ngFor="let sequence of bidded.bidSequences; let i = index" style="width: 100%;">                
+                <div style="text-align: left;">Jogo {{i+1}} - </div>
+                <div style="display: inline;  width: 90%; margin: auto;">           
+                    <span *ngFor="let number of sequence.bidSequenceNumbers" style="background: rgba(255, 140, 0, 0.8); text-align: center; border-radius: 25px; text-align: right; font-size: small; margin-left: 0.5em;">                   
+                        {{number.value}}
+                    </span>
+                </div>
+
+            </div>
+
+            <hr/>
+
+            <div style="text-align: left;">Resultado - Atualização prevista em ({{getResultForecast(bidded) | date: 'dd/MM'}})</div>
+            <span *ngFor="let number of bidded.jackpot.jackpotNumber; let i = index" style="background: rgba(0, 0, 255, 0.8); text-align: center; border-radius: 25px; text-align: right; font-size: small; margin-left: 0.5em;" >    
+                {{number.value==0?'X':number.value}}
+            </span>
+
+
+        </mat-card-content>
+             <mat-card-actions *ngIf="bidded">
+        
             <div style="width: 100%; display: flex; justify-content: center; margin-top: 1em;">
             <button mat-raised-button style="background-color: blue; color: white;"  [routerLink]="['/bid']">Ok</button>   
            </div>

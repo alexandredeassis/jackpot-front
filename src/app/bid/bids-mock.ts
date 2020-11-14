@@ -4,7 +4,7 @@ import { Jackpot, Lottery } from '../jackpot/jackpot';
 export const BIDS: Bid[] = [
     {
         id: 1,
-        limitDate: new Date("2020-11-02T14:11:30-03:00"),
+        limitDate: new Date("2020-11-15T14:11:30-03:00"),
         total: 20000,
         missing: 10000,
         status: 'RELEASED',
@@ -12,7 +12,7 @@ export const BIDS: Bid[] = [
         remainingSeconds: 0,
         label: '20 Números',
         jackpot: {
-            id: 1, date: new Date("2020-11-02T10:00:00-03:00"),
+            id: 1, date: new Date("2020-11-15T10:00:00-03:00"),
             estimate: 400000000, description: 'Normal',
             lottery: {
                 id: 1,
@@ -21,22 +21,32 @@ export const BIDS: Bid[] = [
                 banner: 'lotofacil_large.jpeg',
                 minNumber: 15,
                 maxNumber: 20
-            }
+            },
+            jackpotNumber: [{id: 1,value: 0},{id: 2,value: 0},{id: 3,value: 0},{id: 4,value: 0},{id: 5,value: 0},{id: 6,value: 0},{id: 7,value: 0},{id: 8,value: 0},{id: 9,value: 0},{id: 10,value: 0},{id: 11,value: 0},{id: 12,value: 0},{id: 13,value: 0},{id: 14,value: 0},{id: 15,value: 0}]
         },
         bidSequences: [
             {
                 id: 1,
                 bidSequenceNumbers: [
                     { id: 1, value: 1 },
-                    { id: 2, value: 2 },
                     { id: 2, value: 3 },
-                    { id: 4, value: 4 },
-                    { id: 5, value: 5 },
-                    { id: 6, value: 6 },
-                    { id: 7, value: 7 },
-                    { id: 8, value: 8 },
-                    { id: 9, value: 9 },
-                    { id: 10, value: 10 }
+                    { id: 2, value: 4 },
+                    { id: 4, value: 5 },
+                    { id: 5, value: 6 },
+                    { id: 6, value: 7 },
+                    { id: 7, value: 8 },
+                    { id: 8, value: 10 },
+                    { id: 9, value: 11 },
+                    { id: 11, value: 12 },
+                    { id: 12, value: 14 },
+                    { id: 13, value: 15 },
+                    { id: 14, value: 17 },
+                    { id: 15, value: 18 },
+                    { id: 16, value: 20 },
+                    { id: 17, value: 21 },
+                    { id: 18, value: 22 },
+                    { id: 19, value: 24 },
+                    { id: 20, value: 25 }
                 ]
             }
         ]
@@ -46,7 +56,7 @@ export const BIDS: Bid[] = [
     },
     {
         id: 2,
-        limitDate: new Date("2020-11-03T14:43:00-03:00"),
+        limitDate: new Date("2020-11-16T14:43:00-03:00"),
         total: 30000,
         missing: 20000,
         status: 'CLOSED',
@@ -54,7 +64,7 @@ export const BIDS: Bid[] = [
         remainingSeconds: 0,
         label: '17 Números',
         jackpot: {
-            id: 2, date: new Date("2020-11-03T10:00:00-03:00"),
+            id: 2, date: new Date("2020-11-16T10:00:00-03:00"),
             estimate: 800000000,
             description: 'Acumulada',
             lottery: {
@@ -64,22 +74,29 @@ export const BIDS: Bid[] = [
                 banner: 'lotofacil_large.jpeg',
                 minNumber: 15,
                 maxNumber: 20
-            }
+            },
+            jackpotNumber: [{id: 1,value: 0},{id: 2,value: 0},{id: 3,value: 0},{id: 4,value: 0},{id: 5,value: 0},{id: 6,value: 0},{id: 7,value: 0},{id: 8,value: 0},{id: 9,value: 0},{id: 10,value: 0},{id: 11,value: 0},{id: 12,value: 0},{id: 13,value: 0},{id: 14,value: 0},{id: 15,value: 0}]
         },
         bidSequences: [
             {
                 id: 2,
                 bidSequenceNumbers: [
-                    { id: 11, value: 11 },
-                    { id: 12, value: 12 },
-                    { id: 13, value: 13 },
-                    { id: 14, value: 14 },
-                    { id: 15, value: 15 },
-                    { id: 16, value: 16 },
-                    { id: 17, value: 17 },
-                    { id: 18, value: 18 },
-                    { id: 19, value: 19 },
-                    { id: 20, value: 20 }
+                    { id: 1, value: 1 },
+                    { id: 2, value: 3 },
+                    { id: 2, value: 4 },
+                    { id: 4, value: 5 },
+                    { id: 5, value: 6 },
+                    { id: 6, value: 7 },
+                    { id: 7, value: 8 },
+                    { id: 8, value: 10 },
+                    { id: 9, value: 11 },
+                    { id: 11, value: 12 },
+                    { id: 12, value: 14 },
+                    { id: 13, value: 15 },
+                    { id: 14, value: 17 },
+                    { id: 15, value: 18 },
+                    { id: 16, value: 20 },
+                    { id: 17, value: 21 }
                 ]
             }
         ]
@@ -87,7 +104,7 @@ export const BIDS: Bid[] = [
     },
     {
         id: 3,
-        limitDate: new Date("2020-10-29T15:00:30-03:00"),
+        limitDate: new Date("2020-11-24T15:00:30-03:00"),
         total: 40000,
         missing: 15090,
         status: 'RELEASED',
@@ -95,7 +112,7 @@ export const BIDS: Bid[] = [
         remainingSeconds: 0,
         label: '10 Números',
         jackpot: {
-            id: 3, date: new Date("2020-10-24T10:00:00-03:00"),
+            id: 3, date: new Date("2020-11-24T10:00:00-03:00"),
             estimate: 200000000, description: 'Acumulada',
             lottery: {
                 id: 2,
@@ -104,7 +121,8 @@ export const BIDS: Bid[] = [
                 banner: 'megasena_large.jpeg',
                 minNumber: 6,
                 maxNumber: 15
-            }
+            },
+            jackpotNumber: [{id: 1,value: 0},{id: 2,value: 0},{id: 3,value: 0},{id: 4,value: 0},{id: 5,value: 0},{id: 6,value: 0}]
         },
         bidSequences: [
             {
@@ -145,7 +163,8 @@ export const BIDS: Bid[] = [
                 banner: 'megasena_large.jpeg',
                 minNumber: 6,
                 maxNumber: 15
-            }
+            },
+            jackpotNumber: [{id: 1,value: 0},{id: 2,value: 0},{id: 3,value: 0},{id: 4,value: 0},{id: 5,value: 0},{id: 6,value: 0}]
         },
         bidSequences: [
             {
@@ -189,7 +208,8 @@ export const BIDS: Bid[] = [
                 banner: 'megasena_large.jpeg',
                 minNumber: 6,
                 maxNumber: 15
-            }
+            },
+            jackpotNumber: [{id: 1,value: 0},{id: 2,value: 0},{id: 3,value: 0},{id: 4,value: 0},{id: 5,value: 0},{id: 6,value: 0}]
         },
         bidSequences: [
             {
@@ -233,7 +253,8 @@ export const BIDS: Bid[] = [
                 banner: 'megasena_large.jpeg',
                 minNumber: 6,
                 maxNumber: 15
-            }
+            },
+            jackpotNumber: [{id: 1,value: 0},{id: 2,value: 0},{id: 3,value: 0},{id: 4,value: 0},{id: 5,value: 0},{id: 6,value: 0}]
         },
         bidSequences: [
             {

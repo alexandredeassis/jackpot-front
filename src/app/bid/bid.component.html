@@ -60,13 +60,13 @@
                         
                     </div>
 
-                    <div  *ngIf="jack!=bid && wasBidded(jack)" style="display: flex; justify-content: center; align-items: center;  height: 100%;">
-                        <button  mat-raised-button color="primary" (click)="buy(jack)">JA TENHO</button>                                      
+                    <div  *ngIf="jack!=bid && wasBidded(jack)" style="display: flex; justify-content: center; align-items: center;  height: 100%">
+                        <button  mat-raised-button color="accent" (click)="buy(jack)" style="font-weight: bold;">TENHO</button>                                      
                     </div>
 
-                    <div *ngIf="jack===bid" style="display: flex; justify-content: center; align-items: center;  height: 100%;">
+                    <div *ngIf="jack===bid" style="display: flex; justify-content: center; align-items: center;  height: 100%; font-size: xx-large;">
                         <button *ngIf="!wasBidded(bid)" mat-raised-button color="primary" (click)="buy(jack)">QUERO</button>              
-                        <button *ngIf="wasBidded(bid)" mat-raised-button color="primary" (click)="buy(jack)">JA TENHO</button>              
+                        <button *ngIf="wasBidded(bid)" mat-raised-button color="accent" (click)="buy(jack)" style="font-weight: bold;">VER</button>              
                     </div>   
 
                     
@@ -123,3 +123,5 @@
 </div>
 
 </div>
+
+

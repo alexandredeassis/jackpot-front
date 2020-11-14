@@ -4,6 +4,8 @@ export interface Jackpot {
     estimate: number;
     description: string;
     lottery: Lottery;
+    jackpotNumber: JackpotNumber[];
+
 }
 
 export interface Lottery {
@@ -13,4 +15,9 @@ export interface Lottery {
     banner: string;
     minNumber: number;
     maxNumber: number;
+}
+
+export interface JackpotNumber{
+    id: number;
+    value: number;
 }

@@ -5,6 +5,7 @@ import { BidService } from '../bid.service';
 import { Bid } from '../bid/bid';
 import { CustomerService } from '../customer.service';
 import { Wallet } from '../wallet/wallet';
+import { Outcomming } from '../wallet/outcomming';
 
 @Component({
   selector: 'app-bid-details',
@@ -13,12 +14,12 @@ import { Wallet } from '../wallet/wallet';
 })
 export class BidDetailsComponent implements OnInit {
 
-  
+
   constructor(private route: ActivatedRoute, private router: Router,private bidService:  BidService,private location: Location, private customerService: CustomerService) { }
 
-
   @Input() bid: Bid;
-  
+
+  outcomming: Outcomming;
   bidded: Bid;
   taked: boolean=false;
 
@@ -27,8 +28,8 @@ export class BidDetailsComponent implements OnInit {
 
   getBid(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    console.log("parameter id: "+id);
     this.bidService.getBid(id).subscribe(bid => this.setBid(bid));
+
   }
 
   getWallet(){
@@ -38,29 +39,31 @@ export class BidDetailsComponent implements OnInit {
   setWallet(wallet: Wallet){
     this.wallet = wallet;
     this.fit();
-   
+
   }
 
   setBid(bid: Bid){
-    console.log("setBid: "+bid.id);
     this.bid = bid;
     this.fit();
 
-   
+
   }
-  
+
+
 
   fit(): void{
     if(this.bid !=null && this.wallet!=null && Array.isArray(this.wallet.outcomming) && this.wallet.outcomming.length){
-      
+
       var id = this.bid.id;
       var aux = this.wallet.outcomming.find(e=> e.bid.id === id);
-     
+
       if(aux != null ){
-        this.bidded = aux.bid;          
+        this.bidded = aux.bid;
+        this.outcomming = aux;
       }
     }
-    
+    console.log("fit: bid: "+this.bid+" bidded: "+this.bidded+" wallet: "+this.wallet);
+
   }
 
   getSpent(): string{
@@ -84,7 +87,7 @@ export class BidDetailsComponent implements OnInit {
       return (value*this.getPercent()/100);
     }
 
-  
+
    return 0;
   }
 
@@ -95,10 +98,10 @@ export class BidDetailsComponent implements OnInit {
     if(bid.jackpot.estimate>millions)
      {
       var aux = (bid.jackpot.estimate/millions)
-      return aux>1? aux+' Milhões': aux+' Milhão';      
+      return aux>1? aux+' Milhões': aux+' Milhão';
      }else{
       return  (bid.jackpot.estimate/mil) + ' Mil';
-     }    
+     }
   }
 
   getMissing(): number{
@@ -106,7 +109,7 @@ export class BidDetailsComponent implements OnInit {
     if(this.bid.missing<this.wallet.ballance)
       return  this.bid.missing;
      else
-     return this.wallet.ballance; 
+     return this.wallet.ballance;
   }
 
   getPercent(): number{
@@ -121,30 +124,47 @@ export class BidDetailsComponent implements OnInit {
     //console.log("diff/total*100: "+total);
     //console.log("resp: "+resp);
 
-    
+
     return tax;
   }
+  getMyPercent(outcomming: Outcomming): number{
+    var amount = outcomming.amount;
+    var percent = amount/this.bid.total;
+    var total = percent*100;
+    var resp = Math.round(total);
+    var tax = resp - (resp*0.1);
+    return tax;
 
-  take(bid:Bid){    
+  }
+
+  getResultForecast(bid: Bid): Date{
+    var forecast = new Date(bid.jackpot.date.getTime() + (1000*60*60*24));
+    return forecast;
+  }
+
+  take(bid:Bid){
     this.bidService.take(bid, this.getSpend()).subscribe(resp => (this.taken(resp)));
-    
+    this.fit();
+
   }
   taken(bidded: any){
-    this.bidded = bidded;    
+    this.bidded = bidded;
     this.taked = true;
-    console.log('BIDDED: '+this.bidded);    
+
   }
 
   ngOnInit(): void {
     this.taked = false;
     this.bidded = null;
+    this.outcomming = null;
     this.bid = null;
     this.getBid();
     this.getWallet();
-    
-    
+    this.fit();
+
+
   }
 
-  
+
 
 }

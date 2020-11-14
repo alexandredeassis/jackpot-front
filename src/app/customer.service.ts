@@ -13,7 +13,8 @@ export class CustomerService {
 
   localStorage: Storage;
 
-  constructor() { this.localStorage = window.localStorage;}
+  
+  constructor() { this.localStorage = window.localStorage; console.log("cutomerservice constructed");}
 
   mock: Customer={
     'id': 1,
@@ -36,6 +37,7 @@ export class CustomerService {
   }
 
 clean(): Wallet {
+  console.log("wallet was cleaned");
   this.wallet = new Wallet();
   this.wallet.id = 1;
   this.wallet.ballance = 10000;
@@ -51,7 +53,12 @@ take(aux: Bid, amount: number): Observable<any>{
   
  
   if(aux.missing >= amount){    
-    aux.missing = aux.missing - amount;    
+    aux.missing = aux.missing - amount;
+    if(aux.missing>0){
+      aux.status = 'RELEASED';
+    }else{
+      aux.status = 'CLOSED';
+    }
     this.wallet.ballance = this.wallet.ballance - amount;
     var outcomming = new Outcomming();
     outcomming.id = new Date().getTime();

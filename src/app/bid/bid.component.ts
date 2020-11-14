@@ -30,7 +30,7 @@ export class BidComponent implements OnInit {
   setBids(bids: Bid[]): void{
     this.bids=bids;
     this.calculateRemaining();
-    this.bidService.report();    
+   
   }
   getBid(): Bid{
     return this.bid;
@@ -175,8 +175,7 @@ calculateRemaining(): void {
   }
 
   onSelect(bid: Bid){
-    this.bid = bid;
-    console.log("BID: "+bid.id);
+    this.bid = bid;  
   }
 
 
@@ -186,11 +185,9 @@ calculateRemaining(): void {
     
     console.log('Quero:' + customer.email+" bidId"+bid.id);
 
-    if(customer === null){
-      console.log("customer is null");
+    if(customer === null){      
       this.router.navigate(['/signin']);
-    }else{
-      console.log("customer is not null");
+    }else{      
       this.router.navigate(['/bid-details/'+bid.id]);
     }
   }
