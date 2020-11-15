@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { NgModule } from '@angular/core';
 
+import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms'; 
 import { AppRoutingModule } from './app-routing.module';
@@ -58,7 +59,8 @@ import { WalletComponent } from './wallet/wallet.component';
     ReactiveFormsModule,
     MatStepperModule,
     MatFormFieldModule,
-    MatInputModule,    
+    MatInputModule,
+    HttpClientModule,    
     MatCarouselModule.forRoot()    
   ],
   providers: [],

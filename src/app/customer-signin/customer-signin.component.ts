@@ -30,7 +30,7 @@ export class CustomerSigninComponent implements OnInit {
     if(customer===null)
       this.failed=true;
     else
-    {
+    {      
       this.failed=false;
       this.router.navigate(['/bid']);
     }  

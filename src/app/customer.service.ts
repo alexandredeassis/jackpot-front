@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import {EMPTY, Observable, of, throwError} from 'rxjs';
+
 import { Bid } from './bid/bid';
 import {Customer} from './customer/customer';
 import { Incomming } from './wallet/incomming';
 import { Outcomming } from './wallet/outcomming';
 import { Wallet } from './wallet/wallet';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,19 +17,24 @@ export class CustomerService {
 
   localStorage: Storage;
 
+  private URL = 'http://localhost:8081/auth';
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
   
-  constructor() { this.localStorage = window.localStorage; console.log("cutomerservice constructed");}
+  constructor(private http: HttpClient) { this.localStorage = window.localStorage; console.log("cutomerservice constructed");}
 
   mock: Customer={
     'id': 1,
     'name': 'deyse',
     'email':'deyse.joaquim@gmail.com',
+    'password': '123',
     'token': '',
     'create': new Date(),     
-    'activate': new Date()
+    'activate': new Date(),
+    'profile': 'BidMaster'
   }
-  
-  //incomming: Incomming[]=[{'id': 1, 'amount': 100, 'date': new Date(),'description': 'bonus'}]
+    
 
   wallet: Wallet={
     'id':1,
@@ -84,6 +93,26 @@ take(aux: Bid, amount: number): Observable<any>{
 
   
 signIn(email: string, password: string): Observable<any>{
+    console.log('signin: '+email+" - "+password);
+    var request = new Customer();
+    request.email = email;
+    request.password = password;    
+    return this.http.post<any>(this.URL,request, this.httpOptions).pipe(tap((customer: Customer) => this.setCustomer(customer)), catchError(this.handleError('mengao')));
+    
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {   
+    return (error: any): Observable<T> => {     
+      throwError(new Error('opss!'));
+      return of(null);
+    };
+  }
+
+  setCustomer(customer: Customer): void{
+    this.localStorage.setItem("customer",JSON.stringify(customer));
+  }
+
+  signInOld(email: string, password: string): Observable<any>{
     console.log('signin: '+email+" - "+password);
     
     if(email==='deyse.joaquim@gmail.com' && password === '123'){
